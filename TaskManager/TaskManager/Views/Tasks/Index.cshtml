@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TaskManager.Models.Task>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage tasks</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+
+            <form asp-action="SearchIndex">
+                <input type="text" name="Query" style="border-radius:10px;" />
+                <input type="submit" value="Search" style="border-radius:10px;" />
+            </form>
+
+
+            <th></th>
+        </tr>
+
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TaskName)
+    </td>
+
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.TaskId">Delete</a>
+    </td>
+</tr>}
+    </tbody>
+</table>
